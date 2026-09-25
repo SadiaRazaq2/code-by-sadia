@@ -1,6 +1,6 @@
 import { Ticker } from "@/components/sections/Ticker";
 
-type Crumb = { href: string; label: string };
+type Crumb = { href?: string; label: string };
 
 export function PageTitle({ title, trail = [] }: { title: string; trail?: Crumb[] }) {
   const crumbs = [{ href: "/", label: "Home" }, ...trail, { label: title }];

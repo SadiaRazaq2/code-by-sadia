@@ -1,7 +1,7 @@
 import { getProject, type Project } from "@/data/projects";
 import { site } from "@/lib/brand";
 
-type PageKind = "home" | "about" | "services" | "projects" | "experience" | "contact";
+type PageKind = "home" | "about" | "services" | "projects" | "experience" | "for-businesses" | "contact";
 
 export type Route =
   | {
@@ -40,6 +40,10 @@ const pages: Record<Exclude<PageKind, "home">, { title: string; description: str
     title: "Experience",
     description: "My employment history, from web development and SEO through full-stack roles, 2018 to May 2026.",
   },
+  "for-businesses": {
+    title: "For Businesses | CodeBySadia",
+    description: "Web development, website optimization, SEO and Google Ads solutions for businesses by Sadia Razaq.",
+  },
   contact: {
     title: "Contact",
     description: "Contact me, a full stack developer in Islamabad. Email, phone, and LinkedIn.",
@@ -64,9 +68,16 @@ export function matchRoute(pathname: string): Route {
     };
   }
 
-  if (path === "/about" || path === "/services" || path === "/projects" || path === "/experience" || path === "/contact") {
+  if (
+    path === "/about" ||
+    path === "/services" ||
+    path === "/projects" ||
+    path === "/experience" ||
+    path === "/for-businesses" ||
+    path === "/contact"
+  ) {
     const kind = path.slice(1) as Exclude<PageKind, "home">;
-    return { kind, ...pages[kind] };
+    return { kind, ...pages[kind], absolute: kind === "for-businesses" };
   }
 
   const projectMatch = path.match(/^\/projects\/([^/]+)$/);
@@ -91,6 +102,6 @@ export function matchRoute(pathname: string): Route {
 
 export function documentTitle(pathname: string) {
   const route = matchRoute(pathname);
-  if (route.kind === "home") return route.title;
+  if ("absolute" in route && route.absolute) return route.title;
   return `${route.title} | Sadia Razaq`;
 }

@@ -100,8 +100,12 @@ export function Header() {
                   <a
                     href={link.href}
                     aria-current={current ? "page" : undefined}
-                    className={`flex min-h-11 items-center rounded-full px-3 font-display text-[0.95rem] font-semibold transition-colors duration-ui lg:min-h-0 lg:px-2.5 lg:py-2 xl:px-3 ${
-                      current ? "bg-white/10 text-gold" : "text-cream/90 hover:bg-white/10 hover:text-gold"
+                    className={`flex min-h-11 items-center whitespace-nowrap rounded-full px-3 font-display text-[0.95rem] font-semibold transition-colors duration-ui lg:min-h-0 lg:px-2 lg:py-2 lg:text-[0.82rem] xl:px-2.5 xl:text-[0.95rem] ${
+                      link.emphasis
+                        ? `text-[#ff8aa0] hover:bg-white/10 ${current ? "bg-white/10" : ""}`
+                        : current
+                          ? "bg-white/10 text-gold"
+                          : "text-cream/90 hover:bg-white/10 hover:text-gold"
                     }`}
                   >
                     {link.label}

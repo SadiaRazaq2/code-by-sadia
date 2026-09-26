@@ -32,6 +32,10 @@
   to { transform: translateX(-50%); }
 }
 
+@keyframes flow-dash {
+  to { stroke-dashoffset: -140; }
+}
+
 #main {
   view-transition-name: site-page;
 }
@@ -288,6 +292,11 @@
   .hero-enter-late {
     animation-delay: 90ms;
   }
+
+  .flow-dash {
+    stroke-dasharray: 6 8;
+    animation: flow-dash 16s linear infinite;
+  }
 }
 
 @supports (animation-timeline: view()) {
@@ -314,6 +323,7 @@
   .ticker-track { animation: none; width: 100%; flex-wrap: wrap; justify-content: center; }
   .ticker-track ul { flex-wrap: wrap; justify-content: center; }
   .ticker-track ul[aria-hidden="true"] { display: none; }
+  .flow-dash { animation: none; }
 }
 
 :focus-visible {

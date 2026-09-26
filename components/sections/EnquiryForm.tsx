@@ -25,12 +25,14 @@ export function EnquiryForm({ formId = "project-form", fill = false }: { formId?
     const interest = String(data.get("interest") ?? "").trim();
     const country = String(data.get("country") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
+    const source = new URLSearchParams(window.location.search).get("source")?.trim();
     const lines = [
       `Name: ${name}`,
       `Email: ${email}`,
       phone ? `Phone: ${phone}` : "",
       `Interested in: ${interest}`,
       country ? `Country: ${country}` : "",
+      source ? `Source: ${source}` : "",
       "",
       message,
     ].filter((line, index, all) => line !== "" || all[index - 1] !== "");
